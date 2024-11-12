@@ -5,12 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import com.bor96dev.speakeasy.app.ui.theme.SpeakEasyTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,11 +22,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SpeakEasyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+                        BottomNativationBar()
+                    }
+                ) { innerPadding ->
                 }
             }
         }
@@ -31,17 +35,72 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun BottomNativationBar() {
+    BottomNavigation(
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary) {
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_chat),
+                    contentDescription = "Chat"
+                )
+            },
+            selected = false,
+            onClick = {
+
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_camera),
+                    contentDescription = "Camera"
+                )
+            },
+            selected = false,
+            onClick = {
+
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_translate),
+                    contentDescription = "Translate"
+                )
+            },
+            selected = false,
+            onClick = {
+
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_history),
+                    contentDescription = "History"
+                )
+            },
+            selected = false,
+            onClick = {
+
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.ic_fav),
+                    contentDescription = "Favorite"
+                )
+            },
+            selected = false,
+            onClick = {
+
+            }
+        )
+
+    }
+
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SpeakEasyTheme {
-        Greeting("Android")
-    }
-}
