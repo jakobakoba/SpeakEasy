@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -56,12 +57,17 @@ fun TranslateButton(onTranslate: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TranslationResult(result: String, modifier: Modifier = Modifier) {
+fun TranslationResult(result: String, modifier: Modifier = Modifier, onSaveFavorite: () -> Unit) {
     OutlinedTextField(
         value = result,
         onValueChange = {},
         readOnly = true,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
+        trailingIcon = {
+            IconButton(onClick = onSaveFavorite) {
+                Icon(Icons.Default.Favorite, contentDescription = "Save favorite") }
+        }
     )
+
 }
 

@@ -13,6 +13,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.bor96dev.speakeasy.app.core.domain.favorite.SaveFavoriteUseCase
+import com.bor96dev.speakeasy.app.screen.favorite.FavoriteViewModel
 import com.bor96dev.speakeasy.app.ui.TextInput
 import com.bor96dev.speakeasy.app.ui.TranslateButton
 import com.bor96dev.speakeasy.app.ui.TranslationResult
@@ -20,9 +22,9 @@ import com.bor96dev.speakeasy.app.ui.TranslationResult
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TranslationScreen(
-    viewModel: TranslationViewModel = hiltViewModel()
+    viewModelTranslation: TranslationViewModel = hiltViewModel(),
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModelTranslation.uiState.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -32,15 +34,15 @@ fun TranslationScreen(
         TextInput(
             language = uiState.value.sourceLanguage,
             text = uiState.value.inputText,
-            onTextChange = {viewModel.updateInputText(it)},
-            onClearText = {viewModel.clearInputText()},
+            onTextChange = {viewModelTranslation.updateInputText(it)},
+            onClearText = {viewModelTranslation.clearInputText()},
             modifier = Modifier.padding(horizontal = 16.dp),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         TranslateButton(
-            onTranslate = {viewModel.translateText()},
+            onTranslate = {viewModelTranslation.translateText()},
             modifier = Modifier.padding(horizontal = 16.dp),
         )
 
@@ -51,6 +53,7 @@ fun TranslationScreen(
             TranslationResult(
                 result = it,
                 modifier = Modifier.padding(horizontal = 16.dp),
+                onSaveFavorite = {viewModelTranslation.saveFavorite()}
             )
         }
     }
