@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-//    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -39,9 +39,7 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    hilt {
-        enableAggregatingTask = false
+        buildConfig = true
     }
     configurations {
         create("cleanedAnnotations")
@@ -77,7 +75,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.androidx.room)
-    implementation(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

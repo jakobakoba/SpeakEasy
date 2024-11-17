@@ -22,7 +22,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.bor96dev.speakeasy.app.screen.TranslationScreen
+import com.bor96dev.speakeasy.app.screen.history.HistoryScreen
+import com.bor96dev.speakeasy.app.screen.translation.TranslationScreen
 import com.bor96dev.speakeasy.app.ui.theme.SpeakEasyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,8 +54,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                 composable("chat") {}
                 composable("camera") {}
-                composable("translate") {TranslationScreen()}
-                composable("history") {}
+                composable("translate") { TranslationScreen() }
+                composable("history") { HistoryScreen() }
                 composable("favorite") {}
 
 
