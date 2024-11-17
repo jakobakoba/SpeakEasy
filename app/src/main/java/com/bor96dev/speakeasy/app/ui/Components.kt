@@ -21,25 +21,29 @@ fun TextInput(
     language: String,
     text: String,
     onTextChange: (String) -> Unit,
-    onClearText: () -> Unit
+    onClearText: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         Text(text = language)
         OutlinedTextField(
             value = text,
             onValueChange = onTextChange,
             modifier = Modifier.fillMaxWidth(),
             placeholder = {Text("type here")},
-            leadingIcon = { IconButton(onClick = onClearText) {
-                Icon(Icons.Default.Clear, contentDescription = "Clear")
-            } }
+            trailingIcon = {
+                IconButton(onClick = onClearText) {
+                    Icon(Icons.Default.Clear, contentDescription = "Clear") }
+            }
         )
     }
 }
 
 @Composable
-fun TranslateButton(onTranslate: () -> Unit){
-    Box (modifier = Modifier.fillMaxWidth()){
+fun TranslateButton(onTranslate: () -> Unit, modifier: Modifier = Modifier) {
+    Box(modifier = modifier.fillMaxWidth()) {
        Button(
            onClick = onTranslate,
            modifier = Modifier
@@ -52,12 +56,12 @@ fun TranslateButton(onTranslate: () -> Unit){
 }
 
 @Composable
-fun TranslationResult(result: String) {
+fun TranslationResult(result: String, modifier: Modifier = Modifier) {
     OutlinedTextField(
         value = result,
         onValueChange = {},
         readOnly = true,
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     )
 }
 
