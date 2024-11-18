@@ -14,9 +14,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.bor96dev.speakeasy.app.core.domain.LanguageCode
-import com.bor96dev.speakeasy.app.core.domain.favorite.SaveFavoriteUseCase
-import com.bor96dev.speakeasy.app.screen.favorite.FavoriteViewModel
 import com.bor96dev.speakeasy.app.ui.ChooseLanguage
 import com.bor96dev.speakeasy.app.ui.TextInput
 import com.bor96dev.speakeasy.app.ui.TranslateButton

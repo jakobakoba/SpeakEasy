@@ -51,7 +51,7 @@ data class Translations(
 //    val synonyms: Synonyms?
 //)
 
-@Serializable
-data class Synonyms(
-    @SerialName("") val synonymsList: List<String>
-)
+//@Serializable
+//data class Synonyms(
+//    @SerialName("") val synonymsList: List<String>
+//)
