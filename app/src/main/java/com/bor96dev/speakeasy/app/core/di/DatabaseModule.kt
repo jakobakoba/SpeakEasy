@@ -2,6 +2,7 @@ package com.bor96dev.speakeasy.app.core.di
 
 import android.content.Context
 import com.bor96dev.speakeasy.app.core.data.AppDatabase
+import com.bor96dev.speakeasy.app.core.data.TranslationFavoriteDao
 import com.bor96dev.speakeasy.app.core.data.TranslationHistoryDao
 import dagger.Module
 import dagger.Provides
@@ -24,6 +25,12 @@ object DatabaseModule {
     @Singleton
     fun provideHistoryDao(db: AppDatabase): TranslationHistoryDao {
         return db.translationHistoryDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFavoriteDao(db: AppDatabase): TranslationFavoriteDao {
+        return db.translationFavoriteDao()
     }
 
 

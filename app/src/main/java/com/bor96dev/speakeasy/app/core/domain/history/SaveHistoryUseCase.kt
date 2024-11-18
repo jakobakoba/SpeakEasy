@@ -7,7 +7,7 @@ import javax.inject.Inject
 class SaveHistoryUseCase @Inject constructor(
     private val translationHistoryDao: TranslationHistoryDao
 ) {
-    suspend fun save (sourceText: String, translatedText: String){
+    suspend fun saveHistory (sourceText: String, translatedText: String){
         translationHistoryDao.insertHistory(TranslationHistory(sourceText = sourceText, translatedText = translatedText))
     }
 }

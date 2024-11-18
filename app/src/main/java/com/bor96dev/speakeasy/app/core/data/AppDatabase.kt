@@ -4,10 +4,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TranslationHistory::class], version  = 1)
+@Database(entities = [TranslationHistory::class, TranslationFavorite::class], version  = 1)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun translationHistoryDao(): TranslationHistoryDao
+
+    abstract fun translationFavoriteDao(): TranslationFavoriteDao
 
     companion object {
         @Volatile

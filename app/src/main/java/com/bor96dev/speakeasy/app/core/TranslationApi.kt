@@ -24,7 +24,7 @@ data class TranslationResponse(
     val pronunciation: Pronunciation,
     val translations: Translations,
 //    val definitions: List<Definition>,
-    @SerialName("see-also") val seeAlso: String? // Если "see-also" может быть null
+//    @SerialName("see-also") val seeAlso: String? // Если "see-also" может быть null
 )
 
 @Serializable
@@ -51,7 +51,7 @@ data class Translations(
 //    val synonyms: Synonyms?
 //)
 
-@Serializable
-data class Synonyms(
-    @SerialName("") val synonymsList: List<String>
-)
+//@Serializable
+//data class Synonyms(
+//    @SerialName("") val synonymsList: List<String>
+//)
