@@ -73,7 +73,6 @@ fun TranslationResult(
     onSaveFavorite: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var isFavorite by remember { mutableStateOf(false) }
     Column(modifier = modifier) {
         Text(text = language)
 
@@ -86,11 +85,9 @@ fun TranslationResult(
             trailingIcon = {
                 IconButton(onClick = {
                     onSaveFavorite()
-                    isFavorite = !isFavorite
                 }) {
-                    val icon = if (isFavorite) R.drawable.ic_fav_clicked else R.drawable.ic_fav
                     Image(
-                        painter = painterResource(id = icon),
+                        painter = painterResource(id = R.drawable.ic_fav),
                         contentDescription = "favorite"
                     )
                 }

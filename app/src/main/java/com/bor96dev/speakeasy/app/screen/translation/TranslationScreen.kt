@@ -54,7 +54,7 @@ fun TranslationScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         TranslateButton(
-            onTranslate = {viewModelTranslation.translateText()},
+            onTranslate = {if (uiState.value.inputText.isNotBlank()) viewModelTranslation.translateText()},
             modifier = Modifier.padding(horizontal = 16.dp),
         )
 
