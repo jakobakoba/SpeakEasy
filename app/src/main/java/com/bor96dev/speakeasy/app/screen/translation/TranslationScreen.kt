@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.bor96dev.speakeasy.app.core.domain.LanguageCode
 import com.bor96dev.speakeasy.app.core.domain.favorite.SaveFavoriteUseCase
 import com.bor96dev.speakeasy.app.screen.favorite.FavoriteViewModel
 import com.bor96dev.speakeasy.app.ui.ChooseLanguage
@@ -34,16 +35,16 @@ fun TranslationScreen(
         TopAppBar(title = {Text(text = "Translation App")})
 
         ChooseLanguage(
-            sourceLanguage = "English",
-            targetLanguage = "Russian",
-            onSourceLanguageChange = {},
-            onTargetLanguageChange = {},
-            swapLanguages = {},
+            sourceLanguage = uiState.value.sourceLanguage,
+            targetLanguage = uiState.value.targetLanguage,
+            onSourceLanguageChange = {viewModelTranslation.updateSourceLanguage(it)},
+            onTargetLanguageChange = {viewModelTranslation.updateTargetLanguage(it)},
+            swapLanguages = {viewModelTranslation.swapLanguages()},
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         TextInput(
-            language = uiState.value.sourceLanguage,
+            language = uiState.value.sourceLanguage.name,
             text = uiState.value.inputText,
             onTextChange = {viewModelTranslation.updateInputText(it)},
             onClearText = {viewModelTranslation.clearInputText()},

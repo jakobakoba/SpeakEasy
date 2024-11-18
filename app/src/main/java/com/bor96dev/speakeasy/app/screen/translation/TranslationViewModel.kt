@@ -30,6 +30,13 @@ class TranslationViewModel @Inject constructor(
         _uiState.update { it.copy(inputText = "") }
     }
 
+    fun updateSourceLanguage(language:LanguageCode){
+        _uiState.update{it.copy(sourceLanguage = language)}
+    }
+    fun updateTargetLanguage(language:LanguageCode){
+        _uiState.update{it.copy(targetLanguage = language)}
+    }
+
     fun swapLanguages(){
         _uiState.update {
             it.copy(
@@ -42,8 +49,8 @@ class TranslationViewModel @Inject constructor(
     fun translateText() {
         viewModelScope.launch {
             val result = translationUseCase.translate(
-                sl = LanguageCode.ENGLISH,
-                dl = LanguageCode.RUSSIAN,
+                sl = _uiState.value.sourceLanguage,
+                dl = _uiState.value.targetLanguage,
                 text = _uiState.value.inputText
             )
             _uiState.update {it.copy(translatedText = result.translations.possibleTranslations.firstOrNull() ?: uiState.value.inputText)}
@@ -59,8 +66,8 @@ class TranslationViewModel @Inject constructor(
 }
 
 data class TranslationUiState(
-    val sourceLanguage: String = "English",
-    val targetLanguage: String = "Russian",
+    val sourceLanguage: LanguageCode = LanguageCode.ENGLISH,
+    val targetLanguage: LanguageCode = LanguageCode.RUSSIAN,
     val inputText: String = "",
     val translatedText: String? = null
 )
