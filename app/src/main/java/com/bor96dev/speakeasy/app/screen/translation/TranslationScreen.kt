@@ -3,6 +3,7 @@ package com.bor96dev.speakeasy.app.screen.translation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.bor96dev.speakeasy.app.core.domain.favorite.SaveFavoriteUseCase
 import com.bor96dev.speakeasy.app.screen.favorite.FavoriteViewModel
+import com.bor96dev.speakeasy.app.ui.ChooseLanguage
 import com.bor96dev.speakeasy.app.ui.TextInput
 import com.bor96dev.speakeasy.app.ui.TranslateButton
 import com.bor96dev.speakeasy.app.ui.TranslationResult
@@ -31,6 +33,15 @@ fun TranslationScreen(
     ){
         TopAppBar(title = {Text(text = "Translation App")})
 
+        ChooseLanguage(
+            sourceLanguage = "English",
+            targetLanguage = "Russian",
+            onSourceLanguageChange = {},
+            onTargetLanguageChange = {},
+            swapLanguages = {},
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
         TextInput(
             language = uiState.value.sourceLanguage,
             text = uiState.value.inputText,
