@@ -63,6 +63,7 @@ fun TranslationScreen(
 
         uiState.value.translatedText?.let{
             TranslationResult(
+                language = uiState.value.targetLanguage.name,
                 result = it,
                 modifier = Modifier.padding(horizontal = 16.dp),
                 onSaveFavorite = {viewModelTranslation.saveFavorite()}

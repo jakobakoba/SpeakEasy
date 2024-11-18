@@ -1,24 +1,20 @@
 package com.bor96dev.speakeasy.app.ui
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -71,18 +67,37 @@ fun TranslateButton(onTranslate: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TranslationResult(result: String, modifier: Modifier = Modifier, onSaveFavorite: () -> Unit) {
-    OutlinedTextField(
-        value = result,
-        onValueChange = {},
-        readOnly = true,
-        modifier = modifier.fillMaxWidth(),
-        trailingIcon = {
-            IconButton(onClick = onSaveFavorite) {
-                Icon(painterResource(R.drawable.ic_fav), contentDescription = "Save favorite")
+fun TranslationResult(
+    language: String,
+    result: String,
+    onSaveFavorite: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    var isFavorite by remember { mutableStateOf(false) }
+    Column(modifier = modifier) {
+        Text(text = language)
+
+
+        OutlinedTextField(
+            value = result,
+            onValueChange = {},
+            readOnly = true,
+            modifier = Modifier.fillMaxWidth(),
+            trailingIcon = {
+                IconButton(onClick = {
+                    onSaveFavorite()
+                    isFavorite = !isFavorite
+                }) {
+                    val icon = if (isFavorite) R.drawable.ic_fav_clicked else R.drawable.ic_fav
+                    Image(
+                        painter = painterResource(id = icon),
+                        contentDescription = "favorite"
+                    )
+                }
             }
-        }
-    )
+        )
+    }
+
 }
 
 @Composable
@@ -109,11 +124,14 @@ fun ChooseLanguage(
                     onSourceLanguageChange(it)
                     isSourceLanguageDropdownExpanded = false
                 },
-                onDismissRequest = { isSourceLanguageDropdownExpanded = false }
+                onDismissRequest = { isSourceLanguageDropdownExpanded = false },
+                modifier = Modifier.padding(top = 30.dp, bottom = 30.dp)
             )
         }
 
-        IconButton(onClick = swapLanguages, modifier = Modifier.weight(0.2f).alignByBaseline()) {
+        IconButton(onClick = swapLanguages, modifier = Modifier
+            .weight(0.2f)
+            .alignByBaseline()) {
             Icon(painterResource(R.drawable.ic_swap), contentDescription = "Swap")
         }
 
@@ -128,7 +146,8 @@ fun ChooseLanguage(
                     onTargetLanguageChange(it)
                     isTargetLanguageDropdownExpanded = false
                 },
-                onDismissRequest = { isTargetLanguageDropdownExpanded = false }
+                onDismissRequest = { isTargetLanguageDropdownExpanded = false },
+                modifier = Modifier.padding(top = 30.dp, bottom = 30.dp)
             )
         }
     }
@@ -142,7 +161,8 @@ fun LanguageSelectorDropdown(
     expanded: Boolean,
     currentLanguage: LanguageCode,
     onLanguageSelected: (LanguageCode) -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     DropdownMenu(
         expanded = expanded,

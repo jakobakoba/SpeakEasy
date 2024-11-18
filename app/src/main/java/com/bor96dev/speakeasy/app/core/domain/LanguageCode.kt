@@ -6,7 +6,7 @@ enum class LanguageCode (val code: String) {
     AMHARIC("am"),
     ARABIC("ar"),
     ARMENIAN("hy"),
-    azerbaijani("az"),
+    AZERBAIJANI("az"),
     BASQUE("eu"),
     BELARUSIAN("be"),
     BENGALI("bn"),
